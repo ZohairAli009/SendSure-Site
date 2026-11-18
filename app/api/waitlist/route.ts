@@ -17,7 +17,8 @@ export async function POST(request: Request) {
       body: JSON.stringify({ email }), cache: 'no-store',
     });
     if (!response.ok) {
-      console.error('Waitlist insert failed:', response.status, await response.text());
+      const errorBody = await response.text();
+      console.error(`Waitlist insert failed: ${response.status} ${response.statusText}; allow=${response.headers.get('allow') ?? 'none'}; body=${errorBody || '(empty)'}`);
       return NextResponse.json({ error: 'We could not save your email just now. Please try again.' }, { status: 502 });
     }
     return NextResponse.json({ ok: true });
