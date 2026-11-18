@@ -39,3 +39,4 @@ The page uses one H1, semantic section headings, descriptive anchors, Open Graph
 - Configure Supabase credentials and verify production email collection.
 - Confirm product availability and launch timing.
 - Add founder name/photo only if desired and supplied.
+# SendSure-Site
