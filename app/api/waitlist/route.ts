@@ -12,7 +12,8 @@ export async function POST(request: Request) {
     const key = process.env.SUPABASE_SECRET_KEY;
     if (!url || !key) return NextResponse.json({ error: 'The early-access list is not connected yet. Please try again later.' }, { status: 503 });
     const response = await fetch(`${url.replace(/\/$/, '')}/rest/v1/waitlist`, {
-      method: 'POST', headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Prefer: 'resolution=ignore-duplicates,return=minimal' },
+      // Supabase sb_secret_* API keys are not JWTs; send them as apikey only.
+      method: 'POST', headers: { apikey: key, 'Content-Type': 'application/json', Prefer: 'resolution=ignore-duplicates,return=minimal' },
       body: JSON.stringify({ email }), cache: 'no-store',
     });
     if (!response.ok) {

@@ -17,8 +17,8 @@ Open http://localhost:3000. For a production build, run `npm run build` and then
 
 1. Create a Supabase project.
 2. Run [`supabase/schema.sql`](supabase/schema.sql) in the SQL editor. It creates `public.waitlist` with a unique email constraint and row-level security enabled. No client access policy is created.
-3. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and optionally `NEXT_PUBLIC_SITE_URL` to the real production origin.
-4. Keep `SUPABASE_SERVICE_ROLE_KEY` server-side. The API route at `/api/waitlist` validates email and inserts through Supabase REST. Duplicate addresses are treated as successful signup; the unique constraint prevents duplicate rows. A hidden honeypot provides basic spam protection.
+3. Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and optionally `NEXT_PUBLIC_SITE_URL` to the real production origin.
+4. Keep `SUPABASE_SECRET_KEY` server-side. The API route at `/api/waitlist` validates email and inserts through Supabase REST. Duplicate addresses are treated as successful signup; the unique constraint prevents duplicate rows. A hidden honeypot provides basic spam protection.
 5. Restart the development server after changing environment variables.
 
 Without Supabase credentials, the form displays a setup error and does not simulate a saved signup.
